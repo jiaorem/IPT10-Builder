@@ -2,6 +2,14 @@
 
 namespace RefactoringGuru\Builder\Conceptual;
 
+abstract class House{
+    private $door;
+    private $window;
+    private $wall;
+    private $roof;
+    private $floor;
+    private $foundation;
+}
 //
 interface HouseBuilder
 {
@@ -267,6 +275,39 @@ class HouseWithGarden
     }
 }
 
+//
+class HouseWithGarage
+{
+    public $parts = [];
+
+    public function listParts(): void
+    {
+        echo "Product parts: " . implode(', ', $this->parts) . "\n\n";
+    }
+}
+
+//
+class HouseWithSwimmingPool
+{
+    public $parts = [];
+
+    public function listParts(): void
+    {
+        echo "Product parts: " . implode(', ', $this->parts) . "\n\n";
+    }
+}
+
+//
+class HouseWithFancyStatues
+{
+    public $parts = [];
+
+    public function listParts(): void
+    {
+        echo "Product parts: " . implode(', ', $this->parts) . "\n\n";
+    }
+}
+
 /**
  * The Director is only responsible for executing the building steps in a
  * particular sequence. It is helpful when producing products according to a
@@ -279,6 +320,7 @@ class Director
      * @var Builder
      */
     private $builder;
+    private $type;
 
     /**
      * The Director works with any builder instance that the client code passes
@@ -348,11 +390,6 @@ class Director
     }
 }
 
-/**
- * The client code creates a builder object, passes it to the director and then
- * initiates the construction process. The end result is retrieved from the
- * builder object.
- */
 function clientCode(Director $director)
 {
     $builder = new ConcreteBuilder1();
