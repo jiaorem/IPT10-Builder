@@ -395,19 +395,30 @@ function clientCode(Director $director)
     $builder = new ConcreteBuilder1();
     $director->setBuilder($builder);
 
-    echo "Standard basic product:\n";
-    $director->buildMinimalViableProduct();
-    $builder->getProduct()->listParts();
+    echo "Build A House With Garden";
+    $director->makeHouseWithGarden();
+    $builder->getResult()->listParts();
 
-    echo "Standard full featured product:\n";
-    $director->buildFullFeaturedProduct();
-    $builder->getProduct()->listParts();
+    echo "Build A House With Garage";
+    $director->makeHouseWithGarage();
+    $builder->getResult()->listParts();
+
+    echo "Build A House With SwimmingPool";
+    $director->makeHouseWithSwimmingPool();
+    $builder->getResult()->listParts();
+
+    echo "Build A House With FancyStatues";
+    $director->makeHouseWithFancyStatues();
+    $builder->getResult()->listParts();
 
     // Remember, the Builder pattern can be used without a Director class.
-    echo "Custom product:\n";
-    $builder->producePartA();
-    $builder->producePartC();
-    $builder->getProduct()->listParts();
+    echo "Custom build:\n";
+    $builder->buildWindows();
+    $builder->buildWalls();
+    $builder->buildRoof();
+    $builder->buildFlooring();
+    $builder->buildFoundation();
+    $builder->getResult()->listParts();
 }
 
 $director = new Director();
